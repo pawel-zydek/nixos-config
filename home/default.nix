@@ -5,6 +5,7 @@
     ./vim.nix
     ./firefox.nix
     ./plasma.nix
+    ./packages.nix
   ];
 
   # wersja z pierwszego wdrożenia; nie zmieniamy przy aktualizacjach
