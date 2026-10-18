@@ -28,6 +28,18 @@
   i18n.defaultLocale = "pl_PL.UTF-8";
   console.keyMap = "pl2";
 
+  # Automatyczne sprzątanie generacji:
+  # ESP ma tylko 1 GiB, a każda generacja trzyma tam jądro i initrd
+  boot.loader.systemd-boot.configurationLimit = 10;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
+  nix.optimise.automatic = true;   # deduplikacja plików w /nix/store
+
   # KDE Plasma 6
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
@@ -61,13 +73,10 @@
 
   # Dodatkowe pakiety
   environment.systemPackages = with pkgs; [ 
-	thunderbird 	# Klient poczty elektronicznej
 	git 		# Obsługa GITa
 	vim 		# Konsolowy edytor tekstu
 	mc 		# Konsolowa przeglądarka plików
 	htop		# Konsolowy monitor zasobów
-	libreoffice	# Pakiet biurowy
-	obsidian	# Program do notatek MD
   ];
 
   # Snapshoty ZFS

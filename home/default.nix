@@ -4,6 +4,7 @@
     ./git.nix
     ./vim.nix
     ./firefox.nix
+    ./thunderbird.nix
     ./plasma.nix
     ./packages.nix
   ];
