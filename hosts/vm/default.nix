@@ -1,6 +1,9 @@
 { ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/kvm.nix
+  ];
 
   networking.hostName = "nixos-zfs";
   networking.hostId = "379d459b";          # własne 8 znaków hex

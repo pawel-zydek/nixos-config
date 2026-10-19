@@ -29,8 +29,7 @@
   console.keyMap = "pl2";
 
   # Automatyczne sprzątanie generacji:
-  # ESP ma tylko 1 GiB, a każda generacja trzyma tam jądro i initrd
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 10; # Maksymalna ilość generacji w bootloaderze
 
   nix.gc = {
     automatic = true;

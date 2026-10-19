@@ -7,6 +7,7 @@
     ./thunderbird.nix
     ./plasma.nix
     ./packages.nix
+    ./virt.nix
   ];
 
   # wersja z pierwszego wdrożenia; nie zmieniamy przy aktualizacjach
