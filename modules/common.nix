@@ -15,8 +15,7 @@
   # Plymouth
   boot.plymouth = {
     enable = true;
-    theme = "nixos-bgrt";
-    themePackages = [ pkgs.nixos-bgrt-plymouth ];
+    theme = "spinner";
   };
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
