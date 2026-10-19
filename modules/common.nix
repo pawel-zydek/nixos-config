@@ -15,8 +15,8 @@
   # Plymouth
   boot.plymouth = {
     enable = true;
-    theme = "breeze";
-    themePackages = [ pkgs.kdePackages.breeze-plymouth ];
+    theme = "nixos-bgrt";
+    themePackages = [ pkgs.nixos-bgrt-plymouth ];
   };
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
