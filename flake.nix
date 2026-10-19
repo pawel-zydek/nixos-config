@@ -46,7 +46,17 @@
           ./hosts/vm
         ];
       };
-      # laptop = ... te same moduły, inne ./hosts/laptop
+      pg = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          homeModule
+          ./modules/common.nix
+          ./modules/disko-zfs.nix
+          ./hosts/pg
+        ];
+      };
     };
   };
 }
