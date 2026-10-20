@@ -21,6 +21,15 @@
   boot.initrd.verbose = false;
   boot.kernelParams = [ "quiet" "splash" "udev.log_level=3" ];
 
+  # Ustawienie tła ekranu logowania SDDM
+  environment.systemPackages = [
+    (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+      [General]
+      type=image
+      background=${../home/Wallpapers/NixOS-Stripes-logo.png}
+    '')
+  ];
+
   # System
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Warsaw";
