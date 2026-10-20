@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/kvm.nix
+    ../../modules/wireshark.nix
   ];
 
   networking.hostName = "nixos-zfs";

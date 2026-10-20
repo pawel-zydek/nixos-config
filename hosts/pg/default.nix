@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./network.nix
     ../../modules/kvm.nix
+    ../../modules/wireshark.nix
   ];
 
   networking.hostName = "nixos-pg";
