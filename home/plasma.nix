@@ -7,8 +7,8 @@
       colorScheme = "BreezeClassic";  # jasne okna z ciemną belką tytułową
       iconTheme = "breeze";           # ciemne ikony, widoczne na jasnym tle
       clickItemTo = "select";
-      #wallpaper = ./wallpapers/moja.jpg;
-      #wallpaperFillMode = "preserveAspectCrop";
+      wallpaper = ./Wallpapers/NixOS-Gradient-grey.png;
+      wallpaperFillMode = "preserveAspectCrop";
     };
 
 
