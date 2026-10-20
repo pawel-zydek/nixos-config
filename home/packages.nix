@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    vlc
-    obsidian
-    libreoffice-qt6
+    vlc               # Odtwarzacz multimedialny
+    obsidian          # Aplkacja do notatek w MD
+    libreoffice-qt6   # Pakiet biurowy
+    kdePackages.krdc  # Aplkacja do RDP i VNC
   ];
 }
