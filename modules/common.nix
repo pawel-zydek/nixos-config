@@ -21,15 +21,6 @@
   boot.initrd.verbose = false;
   boot.kernelParams = [ "quiet" "splash" "udev.log_level=3" ];
 
-  # Ustawienie tła ekranu logowania SDDM
-  environment.systemPackages = [
-    (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-      [General]
-      type=image
-      background=${../home/Wallpapers/NixOS-Stripes-logo.png}
-    '')
-  ];
-
   # System
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Warsaw";
@@ -82,8 +73,15 @@
   environment.systemPackages = with pkgs; [ 
 	git 		# Obsługa GITa
 	vim 		# Konsolowy edytor tekstu
-	mc 		# Konsolowa przeglądarka plików
+	mc 		    # Konsolowa przeglądarka plików
 	htop		# Konsolowy monitor zasobów
+	# Miejsce na kolejne aplikacje
+	# Ustawienie tła SDDM
+	(writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+    [General]
+    type=image
+    background=${../home/Wallpapers/NixOS-Stripes-logo.png}
+    '')
   ];
 
   # Snapshoty ZFS
