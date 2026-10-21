@@ -34,6 +34,8 @@
             iconTasks.launchers = [
               "applications:org.kde.dolphin.desktop"
               "applications:firefox.desktop"
+              "applications:spotify.desktop"
+              "applications:virt-manager.desktop"
             ];
           }
 

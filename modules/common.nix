@@ -75,6 +75,7 @@
 	vim 		# Konsolowy edytor tekstu
 	mc 		    # Konsolowa przeglądarka plików
 	htop		# Konsolowy monitor zasobów
+	nvd         # Porównywanie aktualizacji
 	# Miejsce na kolejne aplikacje
 	# Ustawienie tła SDDM
 	(writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
