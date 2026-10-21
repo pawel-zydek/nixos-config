@@ -13,6 +13,12 @@
     "interface-name:vnet*"         # karty uruchomionych VM
   ];
 
+  # Otwarcie portów na interfejsie Wi-Fi dla KDE Connect
+  networking.firewall.interfaces."wlp0s20f3" = {    # nazwa z `ip -br link`
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
+
   services.resolved.enable = true;
 
   systemd.network = {
