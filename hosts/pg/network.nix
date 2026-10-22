@@ -13,10 +13,14 @@
     "interface-name:vnet*"         # karty uruchomionych VM
   ];
 
-  # Otwarcie portów na interfejsie Wi-Fi dla KDE Connect
+  # Otwarcie portów na interfejsie Wi-Fi
   networking.firewall.interfaces."wlp0s20f3" = {    # nazwa z `ip -br link`
+    # Dla KDE Connect
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+    # Dla Spotify Connect
+    allowedTCPPorts = [ 57621 ];
+    allowedUDPPorts = [ 5353 ];
   };
 
   services.resolved.enable = true;

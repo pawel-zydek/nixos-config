@@ -63,6 +63,7 @@
   # Zakładanie użytkowników
   users.users.pawel = {
     isNormalUser = true;
+    description = "Paweł Żydek";
     extraGroups = [ "wheel" "networkmanager" ];
   };
   
@@ -76,6 +77,8 @@
 	mc 		    # Konsolowa przeglądarka plików
 	htop		# Konsolowy monitor zasobów
 	nvd         # Porównywanie aktualizacji
+	kdePackages.kup   # Narzędzia do backupów
+	bitwarden-desktop # Manadżer haseł - dla współpracy z PAM
 	# Miejsce na kolejne aplikacje
 	# Ustawienie tła SDDM
 	(writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
@@ -84,6 +87,9 @@
     background=${../home/Wallpapers/NixOS-Stripes-logo.png}
     '')
   ];
+
+  # Zarządzanie partycjami
+  programs.partition-manager.enable = true;
 
   # Snapshoty ZFS
   services.sanoid = {

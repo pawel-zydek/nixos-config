@@ -7,6 +7,7 @@
     ./thunderbird.nix   # Instalacja i konfiguracja Thunderbirda
     ./plasma.nix        # Konfiguracja wyglądu KDE
     ./packages.nix      # Dodatkowe pakiety
+    ./gpg.nix           # Obsługa GPG
     ./virt.nix          # Koniguracja Virt Managera
     ./kdeconnect.nix    # Zainstalowanie KDE Conncect
   ];
