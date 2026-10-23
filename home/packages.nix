@@ -8,7 +8,7 @@
     anki                          # Program do fiszek
     lame flac vorbis-tools opus-tools   # kodery MP3, FLAC, Ogg
     spotify                       # Klient Spotify
-    keepass
+    keepassxc
     kdePackages.arianna           # Czytnik ebooków
     kdePackages.filelight         # Monitorowanie zużycia dysku
     kdePackages.kcalc             # Kalkulator
