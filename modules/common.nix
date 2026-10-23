@@ -79,7 +79,7 @@
 	btop        # Konsolowy monitor zasobów
 	nvd         # Porównywanie aktualizacji
 	kdePackages.kup   # Narzędzia do backupów
-	bitwarden-desktop # Manadżer haseł - dla współpracy z PAM
+	bitwarden-desktop # Menadżer haseł - dla współpracy z PAM
 	# Miejsce na kolejne aplikacje
 	# Ustawienie tła SDDM
 	(writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
