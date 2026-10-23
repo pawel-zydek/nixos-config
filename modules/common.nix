@@ -76,6 +76,7 @@
 	vim 		# Konsolowy edytor tekstu
 	mc 		    # Konsolowa przeglądarka plików
 	htop		# Konsolowy monitor zasobów
+	btop        # Konsolowy monitor zasobów
 	nvd         # Porównywanie aktualizacji
 	kdePackages.kup   # Narzędzia do backupów
 	bitwarden-desktop # Manadżer haseł - dla współpracy z PAM
