@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    package = pkgs.git.override { withLibsecret = true; };
+    package = pkgs.gitFull;
     settings = {
       user = {
         name = "Paweł";

@@ -5,8 +5,8 @@
 
   # Wi-Fi zostaje pod NetworkManagerem, resztą zarządza networkd lub libvirt
   networking.networkmanager.unmanaged = [
-    "interface-name:enp3s0"        # ETH1
-    "interface-name:enp4s0"        # ETH2
+    "interface-name:enp2s0"        # ETH1
+    "interface-name:enp3s0"        # ETH2
     "interface-name:br100"
     "interface-name:br200"
     "interface-name:virbr*"        # NAT libvirta

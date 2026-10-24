@@ -11,7 +11,7 @@
 
   networking.hostName = "nixos-pg";
   networking.hostId = "2f9bb339";          # własne 8 znaków hex
-  my.disk = "/dev/disk/by-id/UZUPEŁNIĆ";
+  my.disk = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNF0WB12095W";
 
   # Dodatkowe datasety tylko na laptopie (dopisują się do modules/disko-zfs.nix)
   disko.devices.zpool.rpool.datasets = {
