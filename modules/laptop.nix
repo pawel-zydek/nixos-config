@@ -18,9 +18,11 @@
   #   enable = true;
   #   driver = pkgs.libfprint-2-tod1-goodix;   # dobrać do `lsusb`
   # };
-  # Logowanie w SDDM tylko hasłem: odcisk nie odblokowuje KWallet
-  # i potrafi blokować pole hasła. Odcisk działa w sudo i na ekranie blokady.
-  security.pam.services.sddm.fprintAuth = false;
+  # Logowanie (SDDM i konsola) tylko hasłem: odcisk nie odblokowuje KWallet,
+  # a pam_fprintd czeka ~30 s na palec, zanim sprawdzi hasło.
+  # Uwaga: SDDM korzysta z reguł usługi "login", więc wyłączamy ją tutaj.
+  # Odcisk dalej działa w sudo i na ekranie blokady (usługa kde-fingerprint).
+  security.pam.services.login.fprintAuth = false;
 
   # Bluetooth (słuchawki, myszka); Plasma dostarcza applet
   hardware.bluetooth = {
