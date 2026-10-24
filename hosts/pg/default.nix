@@ -5,6 +5,7 @@
     ./network.nix
     ../../modules/laptop.nix
     ../../modules/kvm.nix
+    ../../modules/gns3.nix
     ../../modules/wireshark.nix
     ../../modules/optical.nix
   ];

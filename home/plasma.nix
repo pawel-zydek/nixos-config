@@ -35,6 +35,7 @@
               "applications:org.kde.dolphin.desktop"
               "applications:firefox.desktop"
               "applications:thunderbird.desktop"
+              "applications:obsidian.desktop"
               "applications:spotify.desktop"
               "applications:virt-manager.desktop"
             ];
@@ -104,6 +105,22 @@
           # Pokaż pulpit
           "org.kde.plasma.showdesktop"
         ];
+      }
+    ];
+
+    # Reguły okien KWin: przypięcie okna do właściwego pliku .desktop (ikona na pasku)
+    window-rules = [
+      {
+        description = "Obsidian - poprawna ikona";
+        match.window-class = {
+          value = "obsidian";      # fragment klasy okna z kroku 1
+          type = "substring";
+          match-whole = false;
+        };
+        apply.desktopfile = {
+          value = "obsidian";      # nazwa pliku obsidian.desktop bez rozszerzenia
+          apply = "force";
+        };
       }
     ];
 
