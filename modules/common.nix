@@ -85,7 +85,7 @@
 	(writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
     [General]
     type=image
-    background=${../home/Wallpapers/NixOS-Stripes-logo.png}
+    background=${../home/Wallpapers/NixOS/NixOS-Stripes-Logo.png}
     '')
   ];
 

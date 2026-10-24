@@ -8,7 +8,7 @@
       colorScheme = "BreezeClassic";  # jasne okna z ciemną belką tytułową
       iconTheme = "breeze";           # ciemne ikony, widoczne na jasnym tle
       clickItemTo = "select";
-      wallpaper = ./Wallpapers/NixOS-Gradient-grey.png;
+      wallpaper = ./Wallpapers/Inne/Beskidy_1.jpg;
       wallpaperFillMode = "preserveAspectCrop";
     };
 
@@ -34,6 +34,7 @@
             iconTasks.launchers = [
               "applications:org.kde.dolphin.desktop"
               "applications:firefox.desktop"
+              "applications:thunderbird.desktop"
               "applications:spotify.desktop"
               "applications:virt-manager.desktop"
             ];
