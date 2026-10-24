@@ -8,13 +8,13 @@
       colorScheme = "BreezeClassic";  # jasne okna z ciemną belką tytułową
       iconTheme = "breeze";           # ciemne ikony, widoczne na jasnym tle
       clickItemTo = "select";
-      wallpaper = ./Wallpapers/Inne/Beskidy_1.jpg;
+      wallpaper = ./Wallpapers/Inne/Beskidy_1.JPG;
       wallpaperFillMode = "preserveAspectCrop";
     };
 
     # Ekran blokady
     kscreenlocker.appearance = {
-      wallpaper = ./Wallpapers/NixOS-Stripes-logo.png;
+      wallpaper = ./Wallpapers/NixOS/NixOS-Stripes-Logo.png;
     };
 
     # Ustawienia panelu Plasmy
