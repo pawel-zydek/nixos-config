@@ -79,6 +79,7 @@
 	btop        # Konsolowy monitor zasobów
 	nvd         # Porównywanie aktualizacji
 	kdePackages.kup   # Narzędzia do backupów
+	kdePackages.kdeconnect-kde  # KDE Connect - Plasma sama uruchamia go przy logowaniu
 	bitwarden-desktop # Menadżer haseł - dla współpracy z PAM
 	# Miejsce na kolejne aplikacje
 	# Ustawienie tła SDDM

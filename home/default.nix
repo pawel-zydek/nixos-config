@@ -9,7 +9,6 @@
     ./packages.nix      # Dodatkowe pakiety
     ./gpg.nix           # Obsługa GPG
     ./virt.nix          # Koniguracja Virt Managera
-    ./kdeconnect.nix    # Zainstalowanie KDE Conncect
   ];
 
   # wersja z pierwszego wdrożenia; nie zmieniamy przy aktualizacjach
