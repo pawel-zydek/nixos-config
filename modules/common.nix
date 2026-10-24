@@ -78,6 +78,7 @@
 	htop		# Konsolowy monitor zasobów
 	btop        # Konsolowy monitor zasobów
 	nvd         # Porównywanie aktualizacji
+	fastfetch   # Informacje o systemie
 	kdePackages.kup   # Narzędzia do backupów
 	kdePackages.kdeconnect-kde  # KDE Connect - Plasma sama uruchamia go przy logowaniu
 	bitwarden-desktop # Menadżer haseł - dla współpracy z PAM

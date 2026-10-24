@@ -108,6 +108,9 @@
       }
     ];
 
+    # Wymuszenie załączenia NumLock
+    input.keyboard.numlockOnStartup = "on";
+
     # Reguły okien KWin: przypięcie okna do właściwego pliku .desktop (ikona na pasku)
     window-rules = [
       {
