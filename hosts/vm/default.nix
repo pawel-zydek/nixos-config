@@ -41,4 +41,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlKrUMXtKlnlbGQgiioga7bd/StVWdbAwz+1jJ7+vQO pawel@nixos-pg"
   ];
 
+  # Pozwala wdrażać konfigurację z laptopa (nixos-rebuild --target-host)
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+
 }
