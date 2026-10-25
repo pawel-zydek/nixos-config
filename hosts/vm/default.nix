@@ -6,11 +6,11 @@
     ../../modules/wireshark.nix
   ];
 
-  networking.hostName = "nixos-zfs";
+  networking.hostName = "nixos-vm";
   networking.hostId = "379d459b";          # własne 8 znaków hex
-  my.disk = "/dev/disk/by-id/scsi-360022480ee42d138a5b20c748069ed09";
+  my.disk = "/dev/disk/by-id/virtio-nixosvm"; # Nadać numer seryjny dysku "nixosvm"
 
-  # tylko dla Hyper-V
-  virtualisation.hypervGuest.enable = true;
-  boot.kernelModules = [ "hv_sock" ];
+  # gość KVM/QEMU
+  services.qemuGuest.enable = true;          # wyłączanie/stan VM z poziomu virt-managera
+  services.spice-vdagentd.enable = true;     # schowek i automatyczna rozdzielczość
 }
