@@ -5,12 +5,18 @@
   # Boot + ZFS
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.devNodes = "/dev/disk/by-id";
   boot.zfs.forceImportRoot = false;
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
   zramSwap.enable = true;
+
+  # Każe udisks preferować ntfs-3g zamiast ntfs3
+  environment.etc."udisks2/mount_options.conf".text = ''
+    [defaults]
+    ntfs_drivers=ntfs,ntfs3
+  '';
 
   # Plymouth
   boot.plymouth = {

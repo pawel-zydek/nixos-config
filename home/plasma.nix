@@ -12,6 +12,9 @@
       wallpaperFillMode = "preserveAspectCrop";
     };
 
+    # Ustawiaj tapetę przy każdym logowaniu, nie tylko po zmianie konfiguracji
+    startup.desktopScript."wallpaper_picture".runAlways = true;
+
     # Ekran blokady
     kscreenlocker.appearance = {
       wallpaper = ./Wallpapers/NixOS/NixOS-Stripes-Logo.png;
