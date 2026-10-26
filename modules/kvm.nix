@@ -5,6 +5,7 @@
     qemu = {
       package = pkgs.qemu_kvm;
       swtpm.enable = true;              # emulowany TPM 2.0 (wymóg Windows 11)
+      vhostUserPackages = [ pkgs.virtiofsd ];   # udostępnianie katalogów hosta (virtiofs)
     };
   };
 
