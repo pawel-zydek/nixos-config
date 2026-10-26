@@ -60,7 +60,7 @@
       # adres hosta w sieci 10.100.0.0/16 (bez bramy)
       "20-br100" = {
         matchConfig.Name = "br100";
-        address = [ "10.100.0.20/16" ];
+        address = [ "10.100.250.10/16" ];
         networkConfig = {
           ConfigureWithoutCarrier = true;   # adres zostaje, gdy kabel jest wyjęty
           IPv6AcceptRA = false;
@@ -77,7 +77,7 @@
       # adres hosta w sieci 10.200.0.0/16 (bez bramy)
       "21-br200" = {
         matchConfig.Name = "br200";
-        address = [ "10.200.0.20/16" ];
+        address = [ "10.200.250.10/16" ];
         networkConfig = {
           ConfigureWithoutCarrier = true;
           IPv6AcceptRA = false;
