@@ -16,5 +16,6 @@
     kdePackages.isoimagewriter    # Zapisywanie obrazów ISO
     kid3-kde                      # Edytor tagów plików dźwiękowych
     kdePackages.kasts             # Słuchanie podcastów
+    drawio                        # Tworzenie diagramów i schematów
   ];
 }
