@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  # Zagnieżdżona wirtualizacja: VM-ki na laptopie mogą same uruchamiać KVM
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
+
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
