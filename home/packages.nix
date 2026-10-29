@@ -5,7 +5,7 @@
     obsidian                      # Aplkacja do notatek w MD
     libreoffice-qt6               # Pakiet biurowy
     kdePackages.krdc              # Aplkacja do RDP i VNC
-    anki                          # Program do fiszek
+    anki-bin                      # Program do fiszek
     lame flac vorbis-tools opus-tools   # kodery MP3, FLAC, Ogg
     spotify                       # Klient Spotify
     keepassxc
