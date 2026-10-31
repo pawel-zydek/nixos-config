@@ -8,6 +8,7 @@
     ./plasma.nix        # Konfiguracja wyglądu KDE
     ./packages.nix      # Dodatkowe pakiety
     ./gpg.nix           # Obsługa GPG
+    ./ssh.nix           # Obsługa agenta SSH
     ./virt.nix          # Koniguracja Virt Managera
   ];
 
