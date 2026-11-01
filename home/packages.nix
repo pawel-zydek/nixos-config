@@ -4,6 +4,8 @@
     vlc                           # Odtwarzacz multimedialny
     obsidian                      # Aplkacja do notatek w MD
     libreoffice-qt6               # Pakiet biurowy
+    hunspell                      # Silnik sprawdzania pisowni
+    hunspellDicts.pl_PL           # Polski słownik (pl_PL)
     kdePackages.krdc              # Aplkacja do RDP i VNC
     anki-bin                      # Program do fiszek
     lame flac vorbis-tools opus-tools   # kodery MP3, FLAC, Ogg
