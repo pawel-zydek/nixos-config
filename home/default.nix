@@ -3,6 +3,7 @@
   imports = [
     ./git.nix           # Konfiguracja gita
     ./vim.nix           # Konfiguracja vima
+    ./bash.nix          # Konfiguracja powłoki Bash
     ./firefox.nix       # Instalacja i konfiguracja Firefoxa
     ./thunderbird.nix   # Instalacja i konfiguracja Thunderbirda
     ./plasma.nix        # Konfiguracja wyglądu KDE

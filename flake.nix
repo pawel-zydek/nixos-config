@@ -35,7 +35,7 @@
     };
   in {
     nixosConfigurations = {
-      vm = nixpkgs.lib.nixosSystem {
+      nixos-vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
@@ -46,7 +46,7 @@
           ./hosts/vm
         ];
       };
-      pg = nixpkgs.lib.nixosSystem {
+      nixos-pg = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
