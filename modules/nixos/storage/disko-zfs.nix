@@ -1,11 +1,14 @@
 { lib, config, ... }:
 {
+  # Wspólny układ dysku: ESP 1G + szyfrowana pula ZFS rpool.
+  # Działa tylko, gdy host poda my.disk.
   options.my.disk = lib.mkOption {
-    type = lib.types.str;
+    type = lib.types.nullOr lib.types.str;
+    default = null;
     description = "Ścieżka do dysku, np. /dev/disk/by-id/...";
   };
 
-  config.disko.devices = {
+  config.disko.devices = lib.mkIf (config.my.disk != null) {
     disk.main = {
       type = "disk";
       device = config.my.disk;

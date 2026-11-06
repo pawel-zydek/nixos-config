@@ -1,26 +1,43 @@
 # Konfiguracja systemu NixOS
-Będę rozwijał dla siebie dwie wersje:
-1. Dla wirtualnej maszyny (`vm`) - aktualne testy
-2. Dla laptopa (`pg`) - Przygotowanie do normalnej pracy
 
-Jest to repozytorium do nauki.
+Konfiguracja mojego laptopa (host `nixos-pg`): NixOS + KDE Plasma 6 na szyfrowanym ZFS,
+Home Manager jako moduł NixOS. Jest to repozytorium do nauki.
 
 ## Struktura repozytorium
 
 ```
-flake.nix                 # wejścia (nixpkgs, disko, home-manager, plasma-manager) i hosty
-flake.lock                # przypięte wersje wejść
-modules/
-  common.nix              # wspólne: boot, ZFS, Plasma, użytkownik, pakiety systemowe
-  disko-zfs.nix           # układ dysku: ESP 1G + szyfrowana pula ZFS rpool
-  laptop.nix              # firmware, grafika Intel, czytnik odcisków, Bluetooth, fwupd, drukowanie
-  kvm.nix                 # libvirt + virt-manager + TPM (Windows 11)
-  wireshark.nix, optical.nix
+flake.nix                    # wejścia (nixpkgs, disko, home-manager, plasma-manager) i lista hostów
+flake.lock                   # przypięte wersje wejść
 hosts/
-  vm/                     # maszyna testowa Hyper-V
-  pg/                     # laptop (sieć, mostki, dodatkowe datasety ZFS)
-home/                     # Home Manager: git, vim, firefox, thunderbird, plasma, ...
+  pg/
+    default.nix              # tożsamość hosta + lista włączonych funkcji (my.*.enable)
+    hardware-configuration.nix
+    network.nix              # Wi-Fi, mostki br100/br200, karty w stacji dokującej
+    disko.nix                # dodatkowe datasety ZFS laptopa (vm, vm-lab, reserved)
+modules/
+  nixos/                     # moduły systemowe; default.nix importuje wszystkie
+    core/                    # zawsze włączone: nix, boot, locale, użytkownik, pakiety, Home Manager
+    storage/                 # disko-zfs (wspólny układ dysku), zfs, ntfs
+    desktop/                 # plasma, audio
+    hardware/                # firmware, intel-graphics, fingerprint, bluetooth
+    services/                # printing
+    virtualisation/          # libvirt, gns3
+    programs/                # wireshark, optical
+  home/                      # moduły Home Managera: git, vim, bash, firefox, plasma, ...
+users/
+  pawel.nix                  # które moduły z modules/home/ dostaje użytkownik
+assets/
+  wallpapers/                # tapety (pulpit, ekran blokady, SDDM)
 ```
+
+Moduły spoza `core/` nic nie robią, dopóki host ich nie włączy, np. w `hosts/pg/default.nix`:
+
+```nix
+my.virtualisation.gns3.enable = true;
+```
+
+Nowy moduł: utwórz plik w odpowiednim katalogu `modules/nixos/`, dopisz go do
+`modules/nixos/default.nix` i włącz w hoście. Formatowanie całego repo: `nix fmt`.
 
 ## Układ dysku na laptopie
 
@@ -131,7 +148,7 @@ nix-shell -p usbutils --run lsusb | grep -i -E "finger|goodix|synaptics|elan|val
 
 Zapisz identyfikator `ID xxxx:yyyy` i sprawdź go na liście obsługiwanych urządzeń:
 <https://fprint.freedesktop.org/supported-devices.html>.
-Jeśli jest na liście, nic nie zmieniasz. Jeśli nie, w `modules/laptop.nix` odkomentuj sekcję
+Jeśli jest na liście, nic nie zmieniasz. Jeśli nie, w `modules/nixos/hardware/fingerprint.nix` odkomentuj sekcję
 `services.fprintd.tod` i wybierz sterownik (`libfprint-2-tod1-goodix`, `-goodix-550a`, `-elan`, `-broadcom`, `-vfs0090`).
 
 ### 5c. Plik hardware-configuration.nix
@@ -154,7 +171,7 @@ git status
 ### 5e. Szybki test konfiguracji
 
 ```bash
-nix eval .#nixosConfigurations.pg.config.system.build.toplevel.drvPath
+nix eval .#nixosConfigurations.nixos-pg.config.system.build.toplevel.drvPath
 ```
 
 Jeśli wypisze ścieżkę `/nix/store/...drv`, konfiguracja jest poprawna. Błąd pokaże plik i linię.
@@ -169,7 +186,7 @@ ls -l $(grep -o '/dev/disk/by-id/[^"]*' hosts/pg/default.nix)   # musi wskazywa�
 ## 7. Partycjonowanie i formatowanie (disko)
 
 ```bash
-nix run github:nix-community/disko/latest -- --mode destroy,format,mount --flake .#pg
+nix run github:nix-community/disko/latest -- --mode destroy,format,mount --flake .#nixos-pg
 ```
 
 - disko poprosi o potwierdzenie usunięcia danych,
@@ -188,7 +205,7 @@ Powinny być zamontowane `/mnt`, `/mnt/boot`, `/mnt/nix`, `/mnt/var`, `/mnt/var/
 ## 8. Instalacja
 
 ```bash
-nixos-install --flake .#pg --no-root-passwd
+nixos-install --flake .#nixos-pg --no-root-passwd
 ```
 
 Pobiera kilka GB, więc trochę potrwa. `--no-root-passwd` – root bez hasła logowania, administrujemy przez `sudo` (grupa `wheel`).
@@ -253,16 +270,16 @@ cd ~/nixos-config
 
 # po zmianie plików konfiguracji
 git add -A
-sudo nixos-rebuild switch --flake .#pg
+sudo nixos-rebuild switch --flake .#nixos-pg
 
 # aktualizacja systemu
 nix flake update
-sudo nixos-rebuild switch --flake .#pg
+sudo nixos-rebuild switch --flake .#nixos-pg
 nvd diff /run/booted-system /run/current-system    # co się zmieniło
 git commit -am "Aktualizacja flake.lock" && git push
 
 # test bez zapisywania jako domyślna generacja
-sudo nixos-rebuild test --flake .#pg
+sudo nixos-rebuild test --flake .#nixos-pg
 ```
 
 Stara generacja zawsze jest dostępna w menu systemd-boot przy starcie.

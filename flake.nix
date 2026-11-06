@@ -1,5 +1,5 @@
 {
-  description = "Moje konfiguracje NixOS";
+  description = "Konfiguracja NixOS laptopa (host nixos-pg)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -21,42 +21,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, plasma-manager, ... }:
-  let
-    # ustawienia Home Managera wspólne dla wszystkich hostów
-    homeModule = {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        backupFileExtension = "bak";
-        sharedModules = [ plasma-manager.homeModules.plasma-manager ];
-        users.pawel = import ./home;
-      };
-    };
-  in {
+  outputs = { nixpkgs, ... }@inputs: {
+    # Lista hostów. Cała logika jest w hosts/ i modules/.
+    # Nazwa = hostname, więc `sudo nixos-rebuild switch --flake .` sam wybiera właściwy host.
     nixosConfigurations = {
-      nixos-vm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          homeModule
-          ./modules/common.nix
-          ./modules/disko-zfs.nix
-          ./hosts/vm
-        ];
-      };
       nixos-pg = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          homeModule
-          ./modules/common.nix
-          ./modules/disko-zfs.nix
-          ./hosts/pg
-        ];
+        specialArgs = { inherit inputs; };   # `inputs` dostępne w każdym module
+        modules = [ ./hosts/pg ];
       };
     };
+
+    # `nix fmt` - formatowanie wszystkich plików .nix w repo
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
   };
 }
