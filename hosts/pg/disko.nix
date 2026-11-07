@@ -50,7 +50,7 @@
         var  = { type = "zfs_fs"; mountpoint = "/var";  options.mountpoint = "legacy"; };
         home = { type = "zfs_fs"; mountpoint = "/home"; options.mountpoint = "legacy"; };
 
-        # obrazy maszyn wirtualnych (Windows 11) - osobny dataset
+        # obrazy maszyn wirtualnych roboczych (nie homelab)
         vm = {
           type = "zfs_fs";
           mountpoint = "/var/lib/libvirt/images";
@@ -60,7 +60,7 @@
           };
         };
 
-        # dyski maszyn laboratoryjnych (np. klaster incus-cluster) - snapshoty niezależne od Windows 11
+        # dyski maszyn laboratoryjnych
         vm-lab = {
           type = "zfs_fs";
           mountpoint = "/var/lib/libvirt/vm-lab";
