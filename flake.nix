@@ -1,5 +1,5 @@
 {
-  description = "Konfiguracja NixOS laptopa (host nixos-pg)";
+  description = "Konfiguracja NixOS mojej stacji roboczej";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -22,7 +22,6 @@
   };
 
   outputs = { nixpkgs, ... }@inputs: {
-    # Lista hostów. Cała logika jest w hosts/ i modules/.
     # Nazwa = hostname, więc `sudo nixos-rebuild switch --flake .` sam wybiera właściwy host.
     nixosConfigurations = {
       nixos-pg = nixpkgs.lib.nixosSystem {
