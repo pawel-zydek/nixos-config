@@ -3,14 +3,13 @@
   imports = [
     ./hardware-configuration.nix
     ./network.nix
-    ./disko.nix
+    ./disko.nix                # układ dysku (disko)
     ../../modules/nixos
   ];
 
   # --- Tożsamość hosta ---
   networking.hostName = "nixos-pg";
   networking.hostId = "2f9bb339";          # własne 8 znaków hex (wymagane przez ZFS)
-  my.disk = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNF0WB12095W";
 
   # --- Co jest włączone na tym hoście ---
   my.zfs.enable = true;

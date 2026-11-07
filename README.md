@@ -13,11 +13,11 @@ hosts/
     default.nix              # tożsamość hosta + lista włączonych funkcji (my.*.enable)
     hardware-configuration.nix
     network.nix              # Wi-Fi, mostki br100/br200, karty w stacji dokującej
-    disko.nix                # dodatkowe datasety ZFS laptopa (vm, vm-lab, reserved)
+    disko.nix                # układ dysku: ESP + szyfrowana pula rpool z datasetami
 modules/
   nixos/                     # moduły systemowe; default.nix importuje wszystkie
     core/                    # zawsze włączone: nix, boot, locale, użytkownik, pakiety, Home Manager
-    storage/                 # disko-zfs (wspólny układ dysku), zfs, ntfs
+    storage/                 # zfs, ntfs
     desktop/                 # plasma, audio
     hardware/                # firmware, intel-graphics, fingerprint, bluetooth
     services/                # printing
@@ -58,7 +58,7 @@ Brak partycji swap — używany jest zram (hibernacja nie jest dostępna, ZFS je
 
 # Sposób instalacji (laptop, host `pg`)
 
-> **Uwaga:** krok 7 kasuje **cały** dysk wskazany w `my.disk`.
+> **Uwaga:** krok 7 kasuje **cały** dysk wskazany w `hosts/pg/disko.nix` (`disk.main.device`).
 
 ## 0. Przygotowanie
 
@@ -125,11 +125,11 @@ ls -l /dev/disk/by-id/ | grep -v part
 ```
 
 Wybierz wpis wskazujący na dysk NVMe, najlepiej w postaci `nvme-<MODEL>_<NUMER_SERYJNY>` (nie `nvme-eui...`).
-Wpisz go w `hosts/pg/default.nix`:
+Wpisz go w `hosts/pg/disko.nix`:
 
 ```bash
-vim hosts/pg/default.nix
-# my.disk = "/dev/disk/by-id/nvme-Samsung_SSD_980_1TB_XXXXXXXX";
+vim hosts/pg/disko.nix
+# device = "/dev/disk/by-id/nvme-Samsung_SSD_980_1TB_XXXXXXXX";
 ```
 
 ### 5b. Nazwy kart sieciowych
@@ -179,8 +179,8 @@ Jeśli wypisze ścieżkę `/nix/store/...drv`, konfiguracja jest poprawna. Błą
 ## 6. Ostatnia kontrola przed formatowaniem
 
 ```bash
-grep my.disk hosts/pg/default.nix
-ls -l $(grep -o '/dev/disk/by-id/[^"]*' hosts/pg/default.nix)   # musi wskazywać na nvme0n1 (lub właściwy dysk)
+grep device hosts/pg/disko.nix
+ls -l $(grep -o '/dev/disk/by-id/[^"]*' hosts/pg/disko.nix)   # musi wskazywać na nvme0n1 (lub właściwy dysk)
 ```
 
 ## 7. Partycjonowanie i formatowanie (disko)
@@ -244,7 +244,7 @@ Wyjmij pendrive.
 1. Wpisz hasło ZFS.
 2. Zaloguj się w SDDM jako `pawel`.
 3. Wi-Fi powinno połączyć się samo (krok 9); jeśli nie – applet sieci w zasobniku.
-4. Zapisz zmiany w repozytorium (głównie `hardware-configuration.nix` i `my.disk`):
+4. Zapisz zmiany w repozytorium (głównie `hardware-configuration.nix` i dysk w `disko.nix`):
 
 ```bash
 cd ~/nixos-config

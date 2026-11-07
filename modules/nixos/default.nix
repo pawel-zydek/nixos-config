@@ -13,7 +13,6 @@
     ./core/packages.nix
     ./core/home-manager.nix
 
-    ./storage/disko-zfs.nix
     ./storage/zfs.nix
     ./storage/ntfs.nix
 
