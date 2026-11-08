@@ -16,6 +16,7 @@
     kdePackages.kcalc             # Kalkulator
     kdePackages.kfind             # Wyszukiwanie plików
     kdePackages.isoimagewriter    # Zapisywanie obrazów ISO
+    kdePackages.kdenlive          # Program do edycji filmów
     kid3-kde                      # Edytor tagów plików dźwiękowych
     kdePackages.kasts             # Słuchanie podcastów
     drawio                        # Tworzenie diagramów i schematów
