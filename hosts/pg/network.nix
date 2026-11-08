@@ -1,6 +1,6 @@
 { ... }:
 {
-  # hardware-configuration.nix włącza DHCP na wszystkich kartach, a tego nie chcemy
+  # wyłączenie domyślnie włączanego DHCP
   networking.useDHCP = false;
 
   # Wi-Fi zostaje pod NetworkManagerem, resztą zarządza networkd lub libvirt
@@ -15,7 +15,7 @@
   ];
 
   # Otwarcie portów na interfejsie Wi-Fi
-  networking.firewall.interfaces."wlp0s20f3" = {    # nazwa z `ip -br link`
+  networking.firewall.interfaces."wlp0s20f3" = {
     # Dla KDE Connect
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
