@@ -23,6 +23,7 @@
     ./hardware/intel-graphics.nix
     ./hardware/fingerprint.nix
     ./hardware/bluetooth.nix
+    ./hardware/printer.nix
 
     ./services/printing.nix
 
