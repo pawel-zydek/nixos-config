@@ -103,7 +103,12 @@
           "org.kde.plasma.systemtray"
 
           # Zegarek
-          "org.kde.plasma.digitalclock"
+          {
+            digitalClock = {
+              calendar.firstDayOfWeek = "monday";
+              calendar.showWeekNumbers = true;
+            };
+          }
 
           # Pokaż pulpit
           "org.kde.plasma.showdesktop"
