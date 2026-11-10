@@ -57,6 +57,7 @@
           options = {
             mountpoint = "legacy";
             recordsize = "64K";                # = rozmiar klastra qcow2
+            atime = "off";
           };
         };
 

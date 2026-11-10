@@ -19,7 +19,9 @@ in
     programs.partition-manager.enable = true;
 
     environment.systemPackages = with pkgs; [
-      kdePackages.kup             # narzędzia do backupów
+      kdePackages.kup             # kopie zapasowe (Ustawienia systemowe -> Kopie zapasowe)
+      bup                         # silnik kopii wersjonowanych Kup
+      rsync                       # silnik kopii synchronizowanych Kup
       kdePackages.kdeconnect-kde  # KDE Connect - Plasma sama uruchamia go przy logowaniu
 
       # Tło SDDM

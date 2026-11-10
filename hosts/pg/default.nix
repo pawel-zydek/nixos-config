@@ -13,6 +13,7 @@
 
   # --- Co jest włączone na tym hoście ---
   my.zfs.enable = true;
+  my.ntfs.enable = true;
   my.desktop.plasma.enable = true;
   my.audio.enable = true;
 

@@ -28,8 +28,8 @@ in
     };
     users.groups.ubridge = { };
 
-    # ubridge - uruchamianie wrappera, kvm - przyspieszenie węzłów QEMU
-    users.users.pawel.extraGroups = [ "ubridge" "kvm" ];
+    # ubridge - uruchamianie wrappera (grupa kvm niepotrzebna: /dev/kvm ma tryb 0666)
+    users.users.${config.my.user}.extraGroups = [ "ubridge" ];
 
     # moduł tun do interfejsów TAP (ładuje go też libvirt, tu dla pewności)
     boot.kernelModules = [ "tun" ];

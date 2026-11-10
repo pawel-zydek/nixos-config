@@ -9,9 +9,5 @@
 
     historyControl = [ "ignoredups" "ignorespace" ];  # bez duplikatów, spacja na początku = nie zapisuj
     historySize = 10000;
-
-    # dowolne dodatkowe linie do ~/.bashrc
-    initExtra = ''
-    '';
   };
 }

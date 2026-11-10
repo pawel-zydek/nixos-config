@@ -16,16 +16,16 @@ hosts/
     disko.nix                # układ dysku: ESP + szyfrowana pula rpool z datasetami
 modules/
   nixos/                     # moduły systemowe; default.nix importuje wszystkie
-    core/                    # zawsze włączone: nix, boot, locale, użytkownik, pakiety, Home Manager
+    core/                    # zawsze włączone: nix, boot, locale, użytkownik, sieć, pakiety, Home Manager
     storage/                 # zfs, ntfs
     desktop/                 # plasma, audio
     hardware/                # firmware, intel-graphics, fingerprint, bluetooth
-    services/                # printing
+    services/                # printing (druk, skaner, mDNS)
     virtualisation/          # libvirt, gns3
     programs/                # wireshark, optical
   home/                      # moduły Home Managera: git, vim, bash, firefox, plasma, ...
 users/
-  pawel.nix                  # które moduły z modules/home/ dostaje użytkownik
+  pawel.nix                  # które moduły z modules/home/ dostaje użytkownik (login = opcja my.user)
 assets/
   wallpapers/                # tapety (pulpit, ekran blokady, SDDM)
 ```
@@ -49,6 +49,7 @@ Nowy moduł: utwórz plik w odpowiednim katalogu `modules/nixos/`, dopisz go do
 | `rpool/nix` | `/nix` | |
 | `rpool/var` | `/var` | |
 | `rpool/vm` | `/var/lib/libvirt/images` | obrazy VM (Windows 11), `recordsize=64K` |
+| `rpool/vm-lab` | `/var/lib/libvirt/vm-lab` | dyski maszyn laboratoryjnych, `recordsize=64K` |
 | `rpool/home` | `/home` | snapshoty sanoid (24 h / 7 dni / 3 mies.) |
 | `rpool/reserved` | — | rezerwa 50 GB, żeby pula nigdy się nie zapełniła |
 
@@ -138,7 +139,9 @@ vim hosts/pg/disko.nix
 ip -br link
 ```
 
-Porównaj nazwy z `hosts/pg/network.nix` (`enp3s0`, `enp4s0`, `wlp0s20f3`) i popraw, jeśli są inne.
+Porównaj nazwy z `hosts/pg/network.nix` (`enp2s0` – karta przewodowa, `wlp0s20f3` – Wi-Fi) i popraw, jeśli są inne.
+Karty w stacji dokującej (`dock100`, `dock200`) są rozpoznawane po adresie MAC – przy innej stacji
+popraw adresy w sekcji `links` (`ip -br link` pokazuje MAC każdej karty).
 
 ### 5b'. Czytnik linii papilarnych
 
@@ -200,7 +203,8 @@ zfs list
 findmnt -R /mnt
 ```
 
-Powinny być zamontowane `/mnt`, `/mnt/boot`, `/mnt/nix`, `/mnt/var`, `/mnt/var/lib/libvirt/images`, `/mnt/home`.
+Powinny być zamontowane `/mnt`, `/mnt/boot`, `/mnt/nix`, `/mnt/var`, `/mnt/var/lib/libvirt/images`,
+`/mnt/var/lib/libvirt/vm-lab`, `/mnt/home`.
 
 ## 8. Instalacja
 

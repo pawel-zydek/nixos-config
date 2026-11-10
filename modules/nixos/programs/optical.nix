@@ -13,11 +13,8 @@ in
       cdparanoia             # odczyt płyt audio
     ];
 
-    users.users.pawel.extraGroups = [ "cdrom" ];
+    users.users.${config.my.user}.extraGroups = [ "cdrom" ];
 
-    # dostęp do napędu optycznego dla grupy cdrom
-    services.udev.extraRules = ''
-      KERNEL=="sr[0-9]*", GROUP="cdrom", MODE="0660"
-    '';
+    # /dev/sr* dostaje grupę cdrom i tryb 0660 z domyślnych reguł udev (50-udev-default.rules)
   };
 }

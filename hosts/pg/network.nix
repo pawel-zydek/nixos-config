@@ -21,6 +21,7 @@
     allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
     # Dla Spotify Connect
     allowedTCPPorts = [ 57621 ];
+    # mDNS: Spotify Connect oraz wykrywanie drukarki/skanera (Avahi ma openFirewall = false)
     allowedUDPPorts = [ 5353 ];
   };
 

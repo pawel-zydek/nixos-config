@@ -10,6 +10,7 @@
     ./core/boot.nix
     ./core/locale.nix
     ./core/users.nix
+    ./core/network.nix
     ./core/packages.nix
     ./core/home-manager.nix
 
@@ -23,7 +24,6 @@
     ./hardware/intel-graphics.nix
     ./hardware/fingerprint.nix
     ./hardware/bluetooth.nix
-    ./hardware/printer.nix
 
     ./services/printing.nix
 

@@ -12,6 +12,6 @@ in
     };
 
     # członkowie tej grupy mogą przechwytywać ruch bez sudo
-    users.users.pawel.extraGroups = [ "wireshark" ];
+    users.users.${config.my.user}.extraGroups = [ "wireshark" ];
   };
 }
