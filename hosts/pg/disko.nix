@@ -1,6 +1,6 @@
 { ... }:
 {
-  # Układ dysku laptopa: ESP 1G + szyfrowana pula ZFS rpool.
+  # Układ dysku stacji roboczej: ESP 1G + szyfrowana pula ZFS rpool.
   # Używany przy instalacji (disko) i do generowania fileSystems.
   disko.devices = {
     disk.main = {
@@ -50,7 +50,7 @@
         var  = { type = "zfs_fs"; mountpoint = "/var";  options.mountpoint = "legacy"; };
         home = { type = "zfs_fs"; mountpoint = "/home"; options.mountpoint = "legacy"; };
 
-        # obrazy maszyn wirtualnych roboczych (nie homelab)
+        # Obrazy maszyn wirtualnych roboczych (nie homelab)
         vm = {
           type = "zfs_fs";
           mountpoint = "/var/lib/libvirt/images";
@@ -61,7 +61,7 @@
           };
         };
 
-        # dyski maszyn laboratoryjnych
+        # Dyski maszyn laboratoryjnych
         vm-lab = {
           type = "zfs_fs";
           mountpoint = "/var/lib/libvirt/vm-lab";
@@ -72,7 +72,7 @@
           };
         };
 
-        # rezerwa: pula nigdy nie zapełni się w 100%
+        # Rezerwa: pula nigdy nie zapełni się w 100%
         reserved = {
           type = "zfs_fs";
           options = {

@@ -5,7 +5,7 @@
     package = pkgs.gitFull;
     settings = {
       user = {
-        name = "Paweł";
+        name = "Paweł Żydek";
         email = "343913832+pawel-zydek@users.noreply.github.com";
       };
       pull.rebase = true;

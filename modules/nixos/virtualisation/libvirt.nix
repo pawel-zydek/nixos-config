@@ -3,7 +3,7 @@ let
   cfg = config.my.virtualisation.libvirt;
 in
 {
-  options.my.virtualisation.libvirt.enable = lib.mkEnableOption "KVM/libvirt z virt-managerem i TPM (Windows 11)";
+  options.my.virtualisation.libvirt.enable = lib.mkEnableOption "KVM/libvirt z virt-managerem i TPM";
 
   config = lib.mkIf cfg.enable {
     # Zagnieżdżona wirtualizacja (KVM w VM) jest domyślnie włączona od jądra 4.20;

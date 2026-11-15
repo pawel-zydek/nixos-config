@@ -7,11 +7,11 @@
     ../../modules/nixos
   ];
 
-  # --- Tożsamość hosta ---
+  # --- Tożsamość stacji roboczej ---
   networking.hostName = "nixos-pg";
   networking.hostId = "2f9bb339";          # własne 8 znaków hex (wymagane przez ZFS)
 
-  # --- Co jest włączone na tym hoście ---
+  # --- Wybór opcji do załączenia ---
   my.zfs.enable = true;
   my.ntfs.enable = true;
   my.desktop.plasma.enable = true;

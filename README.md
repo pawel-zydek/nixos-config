@@ -89,7 +89,6 @@ passwd nixos            # tymczasowe hasło dla użytkownika instalatora
 ```
 Potem sprawdzić adres IP i połączyć się przez SSH.
 
-
 ## 2. Połączenie z siecią
 
 DHCP po przewodzie działa z automatu. 
@@ -102,14 +101,12 @@ nmcli device wifi connect "NAZWA_SIECI" --ask    # zapyta o hasło
 ping -c 3 nixos.org                       # test połączenia
 ```
 
-
 ## 3. Pobranie repozytorium
 
 ```bash
 git clone https://github.com/pawel-zydek/nixos-config /tmp/nixos-config
 cd /tmp/nixos-config
 ```
-
 
 ## 4. Uzupełnienie danych sprzętowych
 
@@ -152,7 +149,6 @@ git add -A
 git status
 ```
 
-
 ## 5. Partycjonowanie i formatowanie (disko)
 
 > **Uwaga:** krok kasuje **cały** dysk wskazany w `hosts/pg/disko.nix` (`disk.main.device`).
@@ -174,7 +170,6 @@ findmnt -R /mnt
 Powinny być zamontowane `/mnt`, `/mnt/boot`, `/mnt/nix`, `/mnt/var`, `/mnt/var/lib/libvirt/images`,
 `/mnt/var/lib/libvirt/vm-lab`, `/mnt/home`.
 
-
 ## 6. Instalacja
 
 ```bash
@@ -182,7 +177,6 @@ nixos-install --flake .#nixos-pg --no-root-passwd
 ```
 
 `--no-root-passwd` – root bez hasła logowania, administracja przez `sudo` (grupa `wheel`).
-
 
 ## 7. Czynności po instalacji (jeszcze w instalatorze)
 
@@ -200,7 +194,6 @@ cp -r /tmp/nixos-config /mnt/home/pawel/
 chown -R 1000:100 /mnt/home/pawel      # 1000 = pawel, 100 = grupa users
 ```
 
-
 ## 8. Odmontowanie i restart
 
 ```bash
@@ -208,7 +201,6 @@ umount -Rl /mnt
 zpool export -a        # ważne: bez eksportu pula może nie zaimportować się przy starcie
 reboot
 ```
-
 
 ## 9. Pierwsze uruchomienie
 

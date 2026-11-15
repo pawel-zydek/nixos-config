@@ -1,6 +1,6 @@
 { ... }:
 {
-  # wyłączenie domyślnie włączanego DHCP
+  # Wyłączenie domyślnie włączanego DHCP
   networking.useDHCP = false;
 
   # Wi-Fi zostaje pod NetworkManagerem, resztą zarządza networkd lub libvirt
@@ -33,14 +33,14 @@
 
     # Karty USB w stacji dokującej mają ścieżkowe nazwy dłuższe niż 15 znaków
     # (np. enp0s13f0u1u3u3u4), więc jądro zostawia im ethN, a N zależy od kolejności
-    # wykrycia. Nadajemy im stałe nazwy po adresie MAC.
+    # wykrycia. Nadanie stałej nazwy po adresie MAC.
     links = {
       "10-dock100" = {
-        matchConfig.PermanentMACAddress = "0c:37:96:bd:5b:b0";   # dawniej eth2
+        matchConfig.PermanentMACAddress = "0c:37:96:bd:5b:b0";
         linkConfig.Name = "dock100";
       };
       "10-dock200" = {
-        matchConfig.PermanentMACAddress = "40:ae:30:9a:ec:8e";   # dawniej eth0
+        matchConfig.PermanentMACAddress = "40:ae:30:9a:ec:8e";
         linkConfig.Name = "dock200";
       };
     };

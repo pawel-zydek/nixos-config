@@ -10,15 +10,13 @@
     anki-bin                      # Program do fiszek
     lame flac vorbis-tools opus-tools   # kodery MP3, FLAC, Ogg
     spotify                       # Klient Spotify
-    keepassxc
-    kdePackages.arianna           # Czytnik ebooków
+    keepassxc                     # Manadżer haseł
     kdePackages.filelight         # Monitorowanie zużycia dysku
     kdePackages.kcalc             # Kalkulator
     kdePackages.kfind             # Wyszukiwanie plików
     kdePackages.isoimagewriter    # Zapisywanie obrazów ISO
     kdePackages.kdenlive          # Program do edycji filmów
     kid3-kde                      # Edytor tagów plików dźwiękowych
-    kdePackages.kasts             # Słuchanie podcastów
     drawio                        # Tworzenie diagramów i schematów
   ];
 }
