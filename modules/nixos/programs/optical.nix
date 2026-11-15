@@ -1,3 +1,5 @@
+# Programy potrzebne jeśli używam napędu CD
+# Wypalanie CD / Rippowanie CD
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.programs.optical;
@@ -14,7 +16,5 @@ in
     ];
 
     users.users.${config.my.user}.extraGroups = [ "cdrom" ];
-
-    # /dev/sr* dostaje grupę cdrom i tryb 0660 z domyślnych reguł udev (50-udev-default.rules)
   };
 }

@@ -1,43 +1,46 @@
 # Konfiguracja systemu NixOS
 
-Konfiguracja mojego laptopa (host `nixos-pg`): NixOS + KDE Plasma 6 na szyfrowanym ZFS,
-Home Manager jako moduł NixOS. Jest to repozytorium do nauki.
+Konfiguracja mojego laptopa (host `nixos-pg`): 
+NixOS + KDE Plasma 6 na szyfrowanym ZFS,
+Home Manager jako moduł NixOS.
 
 ## Struktura repozytorium
 
 ```
-flake.nix                    # wejścia (nixpkgs, disko, home-manager, plasma-manager) i lista hostów
-flake.lock                   # przypięte wersje wejść
+flake.nix                       # Wejścia (nixpkgs, disko, home-manager, plasma-manager) i lista hostów
+flake.lock                      # Przypięte wersje wejść
 hosts/
   pg/
-    default.nix              # tożsamość hosta + lista włączonych funkcji (my.*.enable)
-    hardware-configuration.nix
-    network.nix              # Wi-Fi, mostki br100/br200, karty w stacji dokującej
-    disko.nix                # układ dysku: ESP + szyfrowana pula rpool z datasetami
+    default.nix                 # Tożsamość hosta + lista włączonych funkcji (my.*.enable)
+    hardware-configuration.nix  # Konfiguracja sprzętu
+    network.nix                 # Wi-Fi, mostki br100/br200, karty w stacji dokującej
+    disko.nix                   # Układ dysku: ESP + szyfrowana pula rpool z datasetami
 modules/
-  nixos/                     # moduły systemowe; default.nix importuje wszystkie
-    core/                    # zawsze włączone: nix, boot, locale, użytkownik, sieć, pakiety, Home Manager
-    storage/                 # zfs, ntfs
-    desktop/                 # plasma, audio
-    hardware/                # firmware, intel-graphics, fingerprint, bluetooth
-    services/                # printing (druk, skaner, mDNS)
-    virtualisation/          # libvirt, gns3
-    programs/                # wireshark, optical
-  home/                      # moduły Home Managera: git, vim, bash, firefox, plasma, ...
+  nixos/                        # Moduły systemowe; default.nix importuje wszystkie
+    core/                       # Nix, boot, locale, użytkownik, sieć, pakiety, Home Manager
+    storage/                    # Systemy plików: zfs, ntfs
+    desktop/                    # Plasma, Audio
+    hardware/                   # Firmware, Intel-graphics, Fingerprint, Bluetooth
+    services/                   # Printing (druk, skaner, mDNS)
+    virtualisation/             # Obsługa wirtualizacji: libvirt, gns3
+    programs/                   # Dodatkowe programy: wireshark, optical, steam
+  home/                         # Moduły Home Managera: git, vim, bash, firefox, plasma, ...
 users/
-  pawel.nix                  # które moduły z modules/home/ dostaje użytkownik (login = opcja my.user)
+  pawel.nix                     # Które moduły z modules/home/ dostaje użytkownik (login = opcja my.user)
 assets/
-  wallpapers/                # tapety (pulpit, ekran blokady, SDDM)
+  wallpapers/                   # Tapety (pulpit, ekran blokady, SDDM)
 ```
 
-Moduły spoza `core/` nic nie robią, dopóki host ich nie włączy, np. w `hosts/pg/default.nix`:
+Moduły spoza `core/` nic nie robią, dopóki host ich nie włączy w `hosts/pg/default.nix`:
 
 ```nix
 my.virtualisation.gns3.enable = true;
 ```
+Aby stworzyć nowy moduł:
+należy utworzyć plik w odpowiednim katalogu `modules/nixos/`, dopisać go do
+`modules/nixos/default.nix` i włączyć w hoście. 
 
-Nowy moduł: utwórz plik w odpowiednim katalogu `modules/nixos/`, dopisz go do
-`modules/nixos/default.nix` i włącz w hoście. Formatowanie całego repo: `nix fmt`.
+Formatowanie całego repo: `nix fmt`.
 
 ## Układ dysku na laptopie
 
@@ -57,18 +60,15 @@ Brak partycji swap — używany jest zram (hibernacja nie jest dostępna, ZFS je
 
 ---
 
-# Sposób instalacji (laptop, host `pg`)
-
-> **Uwaga:** krok 7 kasuje **cały** dysk wskazany w `hosts/pg/disko.nix` (`disk.main.device`).
+# Sposób instalacji
 
 ## 0. Przygotowanie
 
-1. Pobierz **minimalny** obraz NixOS 26.05 z <https://nixos.org/download/> (wersja *Minimal ISO image*, 64-bit Intel/AMD).
-   Nie wybieraj wariantu „new kernel, no ZFS” – nie ma w nim ZFS.
-2. Zapisz obraz na pendrive (np. KDE ISO Image Writer, Rufus w trybie DD, albo `dd`).
+1. Do instalacji wystarczy **minimalny** obraz NixOS 64-bit Intel/AMD. (Kernel LTS z obsługą ZFS)
+2. Obraz zapisać na pendrive w trybie DD.
 3. Ustawienia UEFI/BIOS laptopa:
    - **Secure Boot – wyłączony** (systemd-boot nie jest podpisany),
-   - **Intel VT-x i VT-d (lub AMD-V / IOMMU) – włączone** (potrzebne do KVM i Windows 11),
+   - **Intel VT-x i VT-d (lub AMD-V / IOMMU) – włączone** (potrzebne do KVM),
    - **Intel VMD / RST – wyłączony**, tryb dysku **AHCI** (inaczej instalator może nie widzieć dysku NVMe),
    - uruchamianie z USB w trybie UEFI.
 
@@ -188,6 +188,7 @@ ls -l $(grep -o '/dev/disk/by-id/[^"]*' hosts/pg/disko.nix)   # musi wskazywać 
 
 ## 7. Partycjonowanie i formatowanie (disko)
 
+> **Uwaga:** krok 7 kasuje **cały** dysk wskazany w `hosts/pg/disko.nix` (`disk.main.device`).
 ```bash
 nix run github:nix-community/disko/latest -- --mode destroy,format,mount --flake .#nixos-pg
 ```

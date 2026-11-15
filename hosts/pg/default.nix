@@ -29,6 +29,7 @@
 
   my.programs.wireshark.enable = true;
   my.programs.optical.enable = true;
+  my.programs.steam.enable = true;
 
   # Limit pamięci podręcznej ZFS (ARC) - 8 GiB, reszta RAM dla VM
   boot.kernelParams = [ "zfs.zfs_arc_max=8589934592" ];
