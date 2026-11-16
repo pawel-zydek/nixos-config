@@ -23,7 +23,7 @@ modules/
     hardware/                   # Firmware, Intel-graphics, Fingerprint, Bluetooth
     services/                   # Printing (druk, skaner, mDNS)
     virtualisation/             # Obsługa wirtualizacji: libvirt, gns3
-    programs/                   # Dodatkowe programy: wireshark, optical, steam
+    programs/                   # Dodatkowe programy: wireshark, optical, gaming (Steam, Heroic)
   home/                         # Moduły Home Managera: git, vim, bash, firefox, plasma, ...
 users/
   pawel.nix                     # Które moduły z modules/home/ dostaje użytkownik

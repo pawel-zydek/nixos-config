@@ -32,6 +32,6 @@
 
     ./programs/wireshark.nix
     ./programs/optical.nix
-    ./programs/steam.nix
+    ./programs/gaming.nix
   ];
 }
