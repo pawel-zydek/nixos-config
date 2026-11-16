@@ -1,9 +1,10 @@
 # Gry: Steam i Heroic (GOG/Epic/Amazon).
 # Instalowane w systemie (nie HomeManager), ponieważ obsługa wymaga dodatkowych
 # ustawień systemowych (grafika 32-bit, firewall, gamemode), a nie samych klientów.
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.my.programs.gaming;
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options.my.programs.gaming.enable = lib.mkEnableOption "Gry: Steam i Heroic Games Launcher";
@@ -18,7 +19,9 @@ in
     programs.gamemode.enable = true;
     environment.systemPackages = [
       pkgs.mangohud
-      pkgs.heroic # launcher dla GOG, Epic i Amazon
+      # Launcher dla GOG, Epic i Amazon. Z unstable, bo logowanie do GOG
+      # (blokada Cloudflare) naprawiono dopiero w wersji 2.22.4.
+      unstable.heroic
     ];
   };
 }
